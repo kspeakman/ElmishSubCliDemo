@@ -104,8 +104,8 @@ module Program =
                 let subs = subscribe userModel
                 { model with UserModel = userModel },
                 Cmd.batch [
-                    Cmd.map UserMsg userCmd
                     LiveSubs.diff model.Subs subs |> Fx.fromDiff onError
+                    Cmd.map UserMsg userCmd
                 ]
 
         let mapView userView model dispatch =
